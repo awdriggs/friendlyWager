@@ -6,5 +6,6 @@ Forum with ability to set wagers on when events will happen
 
 [Trello Workflow](https://trello.com/b/beBxU5mk/friendly-wager) 
 
+Wireframe
 ![wireframe](https://github.com/awdriggs/friendlyWager/blob/master/resources/wireframe001.jpg "Wireframe")
 

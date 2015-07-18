@@ -1,3 +1,90 @@
+// mixins
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+@mixin ul(){
+
+}
+
+/*Variables*/
+$title_font:'Kadwa', serif;
+$body_font: 'Cutive', serif;
+/*colors*/
+$yellow: #f7ef81; //rgba(247, 239, 129, 100)
+$orange: #f2a359; //rgba(242, 163, 89, 100)
+$grenn: #88ab75; //rgba(136, 171, 117, 100)
+$blue: #006992; //rgba(0, 105, 146, 100)
+$grey: #8fb3b7; //rgba(143, 179, 183, 100)
+
+html {
+  font-size: 62.5%; /* Sets up the Base 10 stuff */
+}
+
 body{
 	/*background-color: blue;*/
+	padding: 5px;
+	@include font-size(2);
+}
+
+#wrapper{
+	background-color: $grey;
+	width: 100%;
+	min-width: 400px;
+	margin: 0 auto;
+	font-family: $body_font;
+}
+#logo {
+	width: 100%;
+	background-color: $yellow;
+	h1 {
+		font-family: $title_font;
+		@include font-size(4);
+		text-align: center;
+		margin: 0;
+	}
+}
+
+nav{
+	display: flex;
+	ul{
+		width: 100%;
+		margin: 0 auto;
+		padding: 0;
+	}
+	li{
+		width: 30%;
+	
+		height: 3rem;
+		@include font-size(3);
+		margin: 0 0 0 2%;
+		padding-top: 1rem;
+		display: inline-block;
+		background-color: $orange;
+		text-align: center;
+	}
+}
+
+#menu{
+	max-width: 400px;
+	margin: 0 auto;
+
+	ul{
+		width: 100%;
+		margin: 0;
+		padding: 1px 0;
+	}
+
+	li{
+		text-align: center;
+		list-style-type: none;
+		@include font-size(2.5);
+		height: 3rem;
+		padding-top: 1.25rem;
+		background-color: $yellow;
+		margin: 3%;
+	}
+
+
+
 }
