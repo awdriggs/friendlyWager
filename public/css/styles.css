@@ -5,13 +5,9 @@ html {
   /* Sets up the Base 10 stuff */ }
 
 body {
-  /*background-color: blue;*/
-  padding: 5px;
-  font-size: 20px;
-  font-size: 2rem; }
+  padding: 5px; }
 
 #wrapper {
-  background-color: #8fb3b7;
   width: 100%;
   min-width: 400px;
   margin: 0 auto;
@@ -19,7 +15,8 @@ body {
 
 #logo {
   width: 100%;
-  background-color: #f7ef81; }
+  background-color: #f7ef81;
+  margin: 1rem 0; }
   #logo h1 {
     font-family: "Kadwa", serif;
     font-size: 40px;
@@ -35,11 +32,11 @@ nav {
     padding: 0; }
   nav li {
     width: 30%;
-    height: 3rem;
+    height: 4rem;
     font-size: 30px;
     font-size: 3rem;
     margin: 0 0 0 2%;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
     display: inline-block;
     background-color: #f2a359;
     text-align: center; }
@@ -60,3 +57,48 @@ nav {
     padding-top: 1.25rem;
     background-color: #f7ef81;
     margin: 3%; }
+
+.topic {
+  font-size: 20px;
+  font-size: 2rem;
+  padding: 2rem;
+  background-color: #8fb3b7;
+  margin: 1rem auto; }
+  .topic a, .topic a:visited {
+    text-decoration: none;
+    color: black; }
+  .topic a:hover {
+    color: #006992; }
+  .topic p {
+    display: inline-block; }
+  .topic h2 {
+    text-align: center; }
+  .topic .meta {
+    height: 75px;
+    background-color: #f2a359; }
+    .topic .meta h3 {
+      margin: 0;
+      padding: 1rem; }
+    .topic .meta p {
+      font-size: 10px;
+      font-size: 1rem;
+      margin: 0; }
+    .topic .meta img {
+      float: left;
+      margin: 0 1rem 0 0; }
+  .topic .stats {
+    display: flex;
+    text-align: center; }
+    .topic .stats p {
+      width: 50%; }
+  .topic .topic_actions {
+    display: flex; }
+    .topic .topic_actions a {
+      background-color: #88ab75;
+      width: 45%;
+      height: 4rem;
+      margin: 0 2.5%;
+      font-size: 30px;
+      font-size: 3rem;
+      padding-top: 1.5rem;
+      text-align: center; }

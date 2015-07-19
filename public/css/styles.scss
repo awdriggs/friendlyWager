@@ -1,7 +1,7 @@
 // mixins
 @mixin font-size($sizeValue: 1.6) {
-  font-size: ($sizeValue * 10) + px;
-  font-size: $sizeValue + rem;
+	font-size: ($sizeValue * 10) + px;
+	font-size: $sizeValue + rem;
 }
 @mixin ul(){
 
@@ -13,22 +13,22 @@ $body_font: 'Cutive', serif;
 /*colors*/
 $yellow: #f7ef81; //rgba(247, 239, 129, 100)
 $orange: #f2a359; //rgba(242, 163, 89, 100)
-$grenn: #88ab75; //rgba(136, 171, 117, 100)
+$green: #88ab75; //rgba(136, 171, 117, 100)
 $blue: #006992; //rgba(0, 105, 146, 100)
 $grey: #8fb3b7; //rgba(143, 179, 183, 100)
 
 html {
-  font-size: 62.5%; /* Sets up the Base 10 stuff */
+	font-size: 62.5%; /* Sets up the Base 10 stuff */
 }
 
 body{
-	/*background-color: blue;*/
 	padding: 5px;
-	@include font-size(2);
+
+	
 }
 
 #wrapper{
-	background-color: $grey;
+	// background-color: $grey;
 	width: 100%;
 	min-width: 400px;
 	margin: 0 auto;
@@ -37,12 +37,14 @@ body{
 #logo {
 	width: 100%;
 	background-color: $yellow;
+	margin: 1rem 0;
 	h1 {
 		font-family: $title_font;
 		@include font-size(4);
 		text-align: center;
 		margin: 0;
 	}
+
 }
 
 nav{
@@ -54,11 +56,11 @@ nav{
 	}
 	li{
 		width: 30%;
-	
-		height: 3rem;
+
+		height: 4rem;
 		@include font-size(3);
 		margin: 0 0 0 2%;
-		padding-top: 1rem;
+		padding-top: 1.5rem;
 		display: inline-block;
 		background-color: $orange;
 		text-align: center;
@@ -84,7 +86,71 @@ nav{
 		background-color: $yellow;
 		margin: 3%;
 	}
-
-
-
 }
+
+.topic{
+	@include font-size(2);
+	padding: 2rem;
+	background-color: $grey;
+	margin: 1rem auto;
+	a, a:visited{
+		text-decoration: none;
+		color: black;
+	}
+	a:hover{
+		color: $blue;
+	}
+
+	p{
+		display: inline-block;
+	}
+
+	h2{
+		text-align: center;
+	}
+
+	.meta{
+		height: 75px;
+		background-color: $orange;
+
+		h3{
+			margin: 0;
+			padding: 1rem;
+		}
+
+		p{
+			
+			@include font-size(1);
+			margin: 0;
+		}
+
+		img{
+			float: left;
+			margin: 0 1rem 0 0;
+		}
+
+	}
+
+	.stats{
+		display: flex;
+		text-align: center;
+
+		p{
+			width: 50%;
+		}
+	}
+	
+	.topic_actions{
+		display: flex;
+		a{	background-color: $green;
+			width: 45%;
+			height: 4rem;
+			margin: 0 2.5%;
+			@include font-size(3);
+			padding-top:1.5rem;
+			text-align: center;
+		}
+	}
+	
+}
+

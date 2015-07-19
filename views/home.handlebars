@@ -1,1 +1,23 @@
-home
+{{#each topics}}
+<div class='topic'>
+	<div class='meta'>
+		<img src="{{img_url}}" alt="Smiley face" height="75" width="75">
+		<a href="/user/{{owner_id}}"><h3>{{owner_username}}</h3></a>
+		<p>{{creation_date}}</p>
+		<p>{{city}}</p>
+		<p>{{region}}<p>
+		<p>{{country}}</p>
+		</div>
+	<a href="topic/{{id}}"><h2>{{title}}</h2></a>
+	<div class='stats'>
+		<p>12 comments</p>
+		<p>5 wagers</p>
+	</div>
+	<div class='topic_actions'>
+		<a href="addComment/{{id}}">comment</a>
+		<a href="addWager/{{id}}">wager</a>
+	</div>
+</div>
+{{/each}}
+
+	

@@ -1,0 +1,28 @@
+
+<div class='topic'>
+	<div class='meta'>
+		<img src="{{user.img_url}}" alt="Smiley face" height="75" width="75">
+		<a href="/user/{{owner_id}}"><h3>{{user.username}}</h3></a>
+		<p>{{topic.creation_date}}</p>
+		<p>{{topic.city}}</p>
+		<p>{{topic.region}}<p>
+		<p>{{topic.country}}</p>
+		</div>
+	<h2>{{topic.title}}</h2>
+	{{#each comments}}
+		<div class='comment'>
+			{{comment}}
+		</div>
+	{{/each}}
+	<div class='stats'>
+		<p>12 comments</p>
+		<p>5 wagers</p>
+	</div>
+	<div class='topic_actions'>
+		<a href="addComment/{{id}}">comment</a>
+		<a href="addWager/{{id}}">wager</a>
+	</div>
+</div>
+
+
+	
