@@ -1,0 +1,34 @@
+<div class='topic'>
+	<form action="/topics/{{topic.id}}" method="POST" id="edit">
+		<input type="hidden" name="_method" value="PUT">
+
+		Title<br>
+		<label for="title">
+			<input type="text" name="title" value="{{topic.title}}">
+		</label><br>
+
+		Description
+		<br><label for="description">
+			<textarea name="description" form="edit" rows="4" cols="50">{{{topic.description}}}</textarea>
+			<p>supports markdown</p>
+		</label><br>
+
+		Set Status
+		<br>
+		<input type="radio" name="active" value="true" checked>Active
+		<br>
+		<input type="radio" name="active" value="false">Over
+		<br>
+
+		Set Date
+		<br>
+		<input type="text" id="datetimepicker1" name="complete_date" value='{{topic.complete_date}}'>
+		 	
+	
+		<input type="submit" value="Submit">
+	</form>
+
+<form action="/topics/{{topic.id}}" method="POST">
+	<input type="hidden" name="_method" value="DELETE">
+	<input type="submit" value="delete">
+</div>

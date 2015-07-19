@@ -40,5 +40,19 @@ module.exports.Topic = {
     			});
     		});
     	});
+    },
+
+    update: function(obj, id, callback) {
+
+        db.update('topics', obj, id, function(topic) {
+
+            callback(topic);
+        });
+    },
+
+    delete: function(id, callback) {
+        db.delete('topics', id, function(topic) {
+            callback(topic);
+        });
     }
 }

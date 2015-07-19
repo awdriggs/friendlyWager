@@ -11,6 +11,7 @@ module.exports = {
         pg.connect(dbUrl, function(err, client, done) {
             client.query('SELECT * FROM ' + table, function(err, result) {
                 done();
+                console.log(err);
                 cb(result.rows); //this has to be done to get the result.rows out of the function, return wont work
             });
         });

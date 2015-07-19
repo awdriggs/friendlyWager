@@ -1,27 +1,42 @@
 
 <div class='topic'>
 	<div class='meta'>
-		<img src="{{user.img_url}}" alt="Smiley face" height="75" width="75">
-		<a href="/user/{{owner_id}}"><h3>{{user.username}}</h3></a>
+		<img src="{{user.img_url}}" alt="user icon" height="75" width="75">
+		<a href="/users/{{user.id}}"><h3>{{user.username}}</h3></a>
 		<p>{{topic.creation_date}}</p>
-		<p>{{topic.city}}</p>
-		<p>{{topic.region}}<p>
-		<p>{{topic.country}}</p>
+		<p>{{topic.city}} {{topic.region}} {{topic.country}}</p>
 		</div>
-	<h2>{{topic.title}}</h2>
+	<h2>"{{topic.title}}"</h2>
+	{{{topic.description}}}
+	<a href='/topics/edit/{{topic.id}}'>edit</a>
+	<h3>Comments</h3>
+	<div id='comments'>
+	
+	<a name="comment"></a>
+	<form action='/newComment/{{topic.id}}' method="POST">
+		{{!-- <input type="text" name="comment"> --}}
+		<textarea name='comment' rows='4' cols='50'></textarea>
+		<p>supports markdown</p>
+		<input type="submit" value="add comment">
+	</form>
+
+
+
+
 	{{#each comments}}
 		<div class='comment'>
-			{{comment}}
+			<div class='meta'>
+				<img src="{{img_url}}" alt="user icon" height="75" width="75">
+				<a href="/users/{{user_id}}"><h3>{{username}}</h3></a>
+				<p>{{creation_date}}</p>
+				<p>{{city}} {{region}} {{country}}</p>
+			</div>
+			{{{comment}}}
+			<a href="/comments/{{id}}">edit</a>
 		</div>
 	{{/each}}
-	<div class='stats'>
-		<p>12 comments</p>
-		<p>5 wagers</p>
 	</div>
-	<div class='topic_actions'>
-		<a href="addComment/{{id}}">comment</a>
-		<a href="addWager/{{id}}">wager</a>
-	</div>
+
 </div>
 
 

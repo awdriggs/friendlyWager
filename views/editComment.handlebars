@@ -1,0 +1,16 @@
+<a name="comment"></a>
+	<form action='/comments/{{id}}' method="POST">
+	
+		<input type="hidden" name="_method" value="PUT">
+		<input type="hidden" name="topic_id" value="{{topic_id}}">
+		<textarea name='comment' rows='4' cols='50'>{{comment}}</textarea>
+		<p>supports markdown</p>
+		<input type="submit" value="update">
+	</form>
+
+
+	<form action='/comments/{{id}}' method="POST">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="hidden" name="topic_id" value="{{topic_id}}">
+		<input type="submit" value="delete">
+	</form>
