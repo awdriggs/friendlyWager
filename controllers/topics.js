@@ -66,8 +66,10 @@ module.exports.controller = function(app) {
     //process edit
     app.put('/topics/:id', function(req, res) {
         //res.send(req.body)
+
     	Topics.update(req.body, req.params.id, function(data) {
-    		res.redirect('/topics/'+req.params.id);
+    		//res.send('data?' + data);
+            res.redirect('/topics/'+req.params.id);
     	});
     });
 

@@ -47,21 +47,27 @@ module.exports.controller = function(app) {
     app.post('/login', function(req, res) {
         //find user in database
         Users.findUser(req.body.username, function(user) {
-            if(user != null || user != undefined) {
+            if (user != null || user != undefined) {
                 //if the user is found
-                if(user.password === req.body.password){
+                if (user.password === req.body.password) {
                     req.session.currentUser = user.username;
                     req.session.currentId = user.id;
-                    res.redirect('/session');
+                    res.redirect('/active');
                 } else {
                     res.send('password not correct');
                 }
-                
+
             } else {
                 //if the user is not found
                 res.send('user not found');
             }
         })
-      
+
+    });
+
+    app.delete('/', function(req, res) {
+        req.session.currentUser = null;
+        req.session.currentId = null;
+        res.redirect('/')
     });
 }

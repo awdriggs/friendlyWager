@@ -67,9 +67,9 @@ module.exports.Topic = {
     },
 
     update: function(obj, id, callback) {
-
+        console.log("object in model: "+ obj);
         db.update('topics', obj, id, function(topic) {
-
+            console.log('from model: ' + topic)
             callback(topic);
         });
     },

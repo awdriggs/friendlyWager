@@ -114,7 +114,10 @@ module.exports = {
                 values.push(obj[columns[i]]);
             });
 
+            var query = 'UPDATE ' + table + ' SET ' + set.join(', ') + ' WHERE id=' + id;
+            console.log(query);
             client.query('UPDATE ' + table + ' SET ' + set.join(', ') + ' WHERE id=' + id, values, function(err, result) {
+                console.log(err + " " + result);
                 done();
                 cb(result);
             });

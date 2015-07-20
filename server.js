@@ -79,11 +79,7 @@ app.get('/session', function(req, res) {
   res.send(req.session);
 })
 
-app.delete('/', function(req, res) {
-  req.session.currentUser = null;
-  req.session.currentId = null;
-  res.redirect('/')
-});
+
 
 
 
