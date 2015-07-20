@@ -30,9 +30,9 @@ module.exports.controller = function(app) {
     })
 
     app.post('/newUser', function(req, res) {
-        
+
         Users.create('users', req.body, function(data) {
-        	res.redirect('/users');
+            res.redirect('/users');
         })
 
     });
@@ -42,5 +42,26 @@ module.exports.controller = function(app) {
         Users.addPoints(req.params.id, 10, function(data) {
             res.redirect('/users');
         })
-    })
+    });
+
+    app.post('/login', function(req, res) {
+        //find user in database
+        Users.findUser(req.body.username, function(user) {
+            if(user != null || user != undefined) {
+                //if the user is found
+                if(user.password === req.body.password){
+                    req.session.currentUser = user.username;
+                    req.session.currentId = user.id;
+                    res.redirect('/session');
+                } else {
+                    res.send('password not correct');
+                }
+                
+            } else {
+                //if the user is not found
+                res.send('user not found');
+            }
+        })
+      
+    });
 }

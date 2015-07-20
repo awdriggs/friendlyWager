@@ -1,7 +1,7 @@
 //orm
 var pg = require('pg');
 var dbUrl = "pg://localhost/friendly_wager_db";
-
+ 
 //making this avaible to other js files
 module.exports = {
     end: function() {
@@ -28,6 +28,17 @@ module.exports = {
         });
         this.end();
     },
+
+    findWithCompare: function(table, where, search, cb) {
+        pg.connect(dbUrl, function(err, client, done){
+            client.query('SELECT * FROM ' + table + ' WHERE ' + where +'=$1', [search], function(err, result) {
+                done();
+                console.log(err);
+                cb(result.rows);
+            });
+        });
+        this.end();
+    }, 
 
     sort: function(table, sort_columm, order, limit, cb) {
         pg.connect(dbUrl, function(err, client, done) {

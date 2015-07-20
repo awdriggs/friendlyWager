@@ -37,6 +37,12 @@ module.exports.User = {
 		db.update('users', keys, id, function(users){
 			callback(users);
 		}); 
+	},
+
+	findUser : function(username, callback) {
+		db.findWithCompare('users', 'username', username, function(user) {
+			callback(user[0]);
+		});
 	}
 
 }

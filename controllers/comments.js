@@ -8,7 +8,7 @@ module.exports.controller = function(app) {
 
             var data = {
                 topic_id: req.params.id,
-                user_id: 1, //change later to be the session id
+                user_id: req.session.currentId, //change later to be the session id
                 geo_id: cLoc.loc,
                 city: cLoc.city,
                 region: cLoc.region,
@@ -35,7 +35,7 @@ module.exports.controller = function(app) {
             console.log(req.body.comment);
 
             var data = {
-                user_id: 1, //change later to be the session id
+                
                 geo_id: cLoc.loc,
                 city: cLoc.city,
                 region: cLoc.region,

@@ -7,7 +7,7 @@ module.exports.controller = function(app){
 
             var data = {
                 topic_id: req.params.id,
-                user_id: 5, //change later to be the session id
+                user_id: 2, //change later to be the session id
                 geo_id: cLoc.loc,
                 city: cLoc.city,
                 region: cLoc.region,

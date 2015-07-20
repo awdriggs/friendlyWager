@@ -5,7 +5,7 @@ var exphbs = require('express-handlebars');
 var methodOverride = require('method-override');
 var logger = require('morgan');
 var path = require('path');
-var session    = require('express-session');
+var session = require('express-session');
 
 var marked = require('marked');
 console.log(marked('I am using __markdown__.'));
@@ -45,7 +45,7 @@ app.use(methodOverride(function(req, res) {
 fs.readdirSync('./controllers').forEach(function(file) {
     if (file.substr(-3) == '.js') {
         route = require('./controllers/' + file);
-        route.controller(app);
+        route.controller(app, session);
     }
 });
 
@@ -54,16 +54,16 @@ fs.readdirSync('./controllers').forEach(function(file) {
 // ROUTES ///////////////////////////////////////////////////////////////////
 // HOME route
 app.get('/', function(req, res) {
-	//if sesssion is null, send to the login page
-	if(req.session.name == null || req.session.name == undefined){
-		res.redirect('/login');
+	//if sesssion is null, send to the login page,
+	if(req.session.currentUser == null || req.session.currentUser == undefined){
+    res.redirect('/login');
 	} else {
-		res.redirect('/topics');
+		res.redirect('/active');
 	}
 });
 
 app.get('/login', function(req, res) {
-	res.render('unkownUser', { title: 'my other page', layout: 'login' });
+	res.render('unkownUser', { title: 'Login', layout: 'login' });
 })
 
 //just for testing out the ip
@@ -77,27 +77,12 @@ app.get('/test', function(req, res) {
 //testing for sessions, REFACTOR LATER!
 app.get('/session', function(req, res) {
   res.send(req.session);
-});
-
-app.get('/memory', function(req, res) {
-  if (req.session.name) {
-    res.send('Oh, I remember you. You are ' + req.session.name);
-  } else {
-    res.send('I do not know who you are');
-  }
-});
-
-app.post('/login', function(req, res) {
-  req.session.currentUser = req.body.username;
-  req.session.password = req.body.password;
-  res.redirect('/topics');
-});
-
+})
 
 app.delete('/', function(req, res) {
   req.session.currentUser = null;
-  req.session.password = null;
-  res.send('logged out')
+  req.session.currentId = null;
+  res.redirect('/')
 });
 
 

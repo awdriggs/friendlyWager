@@ -31,7 +31,12 @@
 				<li>tags</li>
 				<li>account</li>
 				<li>search</li>
-				<li id='logout'>logout</li>
+				<li>
+					<form action='/' method='POST'>
+						<input type="hidden" name="_method" value="DELETE">
+						<input type="submit" value="logout">
+					</form>
+				</li>
 			</ul>
 		</div>
 	</div> {{!-- end wrapper --}}

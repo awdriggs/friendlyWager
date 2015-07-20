@@ -41,7 +41,7 @@ module.exports.controller = function(app) {
             var formData = {
                 title: req.body.title,
                 description: marked(req.body.description),
-                owner_id: 1, //update once session is working!
+                owner_id: req.session.currentId, //update once session is working!
                 geo_id: cLoc.loc,
                 city: cLoc.city,
                 region: cLoc.region,
@@ -49,7 +49,7 @@ module.exports.controller = function(app) {
             }
 
             Topics.create(formData, function() {
-                res.redirect('/topics');
+                res.redirect('/active');
             });
         });
     });
