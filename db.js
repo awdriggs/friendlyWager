@@ -1,7 +1,7 @@
 //orm
 var pg = require('pg');
 var dbUrl = "pg://localhost/friendly_wager_db";
- 
+
 //making this avaible to other js files
 module.exports = {
     end: function() {
@@ -30,19 +30,19 @@ module.exports = {
     },
 
     findWithCompare: function(table, where, search, cb) {
-        pg.connect(dbUrl, function(err, client, done){
-            client.query('SELECT * FROM ' + table + ' WHERE ' + where +'=$1', [search], function(err, result) {
+        pg.connect(dbUrl, function(err, client, done) {
+            client.query('SELECT * FROM ' + table + ' WHERE ' + where + '=$1', [search], function(err, result) {
                 done();
                 console.log(err);
                 cb(result.rows);
             });
         });
         this.end();
-    }, 
+    },
 
     sort: function(table, sort_columm, order, limit, cb) {
         pg.connect(dbUrl, function(err, client, done) {
-            client.query('SELECT * FROM ' + table + ' ORDER BY ' + sort_columm + ' ' + order + ' ' + limit , function(err, result) {
+            client.query('SELECT * FROM ' + table + ' ORDER BY ' + sort_columm + ' ' + order + ' ' + limit, function(err, result) {
                 done();
                 console.log(err);
                 cb(result.rows);
@@ -53,7 +53,7 @@ module.exports = {
 
     search: function(table, searchColumn, id, cb) {
         pg.connect(dbUrl, function(err, client, done) {
-            client.query('SELECT * FROM ' + table + ' WHERE ' + searchColumn+ '=' +id, function(err, result) {
+            client.query('SELECT * FROM ' + table + ' WHERE ' + searchColumn + '=' + id, function(err, result) {
                 done();
                 console.log(err);
                 cb(result.rows);
@@ -188,27 +188,29 @@ module.exports = {
     },
 
     join: function(tableArray, keysArray, compareArray, cb) {
-    pg.connect(dbUrl, function(err, client, done) {
-        var keys = keysArray.join(', ');
+        pg.connect(dbUrl, function(err, client, done) {
+            var keys = keysArray.join(', ');
 
-        var joinString = ''
-        
-        for (var i = 1; i < tableArray.length; i++) {
-            joinString += 'JOIN ' + tableArray[i] + " ON " + compareArray[i - 1] + " ";
-        }
+            var joinString = ''
+
+            for (var i = 1; i < tableArray.length; i++) {
+                joinString += 'JOIN ' + tableArray[i] + " ON " + compareArray[i - 1] + " ";
+            }
 
 
-        var query = 'SELECT ' + keys + ' FROM ' + tableArray[0] + " " + joinString;
+            var query = 'SELECT ' + keys + ' FROM ' + tableArray[0] + " " + joinString;
 
-        console.log(query);
-        
-        client.query(query, function(err, result) {
-            console.log(err);
-            done();
-            cb(result.rows);
+            console.log(query);
+
+            client.query(query, function(err, result) {
+                console.log(err);
+                done();
+
+                //console.log(result.rows);
+                cb(result.rows);
+            });
         });
-    });
-    pg.end();
-}
+        this.end(); //can't remember why i used pg.end instead of this.end
+    }
 
 };

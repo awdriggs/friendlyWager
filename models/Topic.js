@@ -51,7 +51,7 @@ module.exports.Topic = {
 
                 db.join(tables, keys, compares, function(wagers) {
                     db.findRelations('users', 'id', topic[0].owner_id, function(user) {
-
+                            
                         var data = {
                             topic: topic[0],
                             comments: comments,

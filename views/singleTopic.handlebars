@@ -1,4 +1,4 @@
-
+<p id='user'>{{sessionId}}</p>
 <div class='topic'>
 	<div class='meta'>
 		<img src="{{user.img_url}}" alt="user icon" height="75" width="75">
@@ -8,8 +8,10 @@
 	</div>
 	<h2>"{{topic.title}}"</h2>
 	{{{topic.description}}}
+	{{#if topic.edit}}
 	<a href='/topics/edit/{{topic.id}}'>edit</a>
-	
+	{{/if}}
+
 	<h3>Wagers</h3>
 	<div id='wagers'>
 		<a name="wager"></a>
@@ -51,7 +53,11 @@
 				<p>{{city}} {{region}} {{country}}</p>
 			</div>
 			{{{comment}}}
-			<a href="/comments/{{id}}">edit</a>
+			
+			{{#if edit}}
+			<a class='edit {{user_id}}' href="/comments/{{id}}">edit</a>
+			{{/if}}
+			
 		</div>
 		{{/each}}
 	</div>
