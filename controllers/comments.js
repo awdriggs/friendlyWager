@@ -5,8 +5,6 @@ var marked = require('marked');
 module.exports.controller = function(app) {
     app.post('/newComment/:id', function(req, res) {
         IpInfo(function(err, cLoc) {
-            
-            console.log(req.body.comment);
 
             var data = {
                 topic_id: req.params.id,

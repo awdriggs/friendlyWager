@@ -19,8 +19,24 @@ module.exports.User = {
 
 			callback(data);
 		});
+	},
+
+	sort : function(points, order, limit, callback) {
+		db.sort('users', points, order, limit, function(users){
+			var data = {
+				users: users
+			}
+
+			callback(data);
+		})
+	},
+
+	addPoints : function(id, amt, callback) {
+		keys = { points: amt};
+
+		db.update('users', keys, id, function(users){
+			callback(users);
+		}); 
 	}
 
-
-	// add leader board options
 }

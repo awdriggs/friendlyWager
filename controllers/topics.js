@@ -9,12 +9,7 @@ module.exports.controller = function(app) {
 
 	//view all topics, with user who created
     app.get('/active', function(req, res) {
-    	//refacotßr in model!
-        var testKeys = ['topics.id', 'topics.title', 'topics.creation_date', 'topics.active', 'topics.city', 'topics.country', 'topics.owner_id', 'users.username AS owner_username', 'users.img_url']
-        var testTables = ['topics', 'users'];
-        var testCompares = ['users.id=topics.owner_id WHERE topics.active=true']
-
-        Topics.all(testTables, testKeys, testCompares, function(data) {
+        Topics.allWhere('active=true', function(data) {
             //res.send(data);
             res.render('home', data);
         });
@@ -22,13 +17,7 @@ module.exports.controller = function(app) {
 
     //see the ended tasks
     app.get('/ended', function(req, res) {
-        
-    	//refactor in model
-        var testKeys = ['topics.id', 'topics.title', 'topics.creation_date', 'topics.active', 'topics.city', 'topics.country', 'topics.owner_id', 'users.username AS owner_username', 'users.img_url']
-        var testTables = ['topics', 'users'];
-        var testCompares = ['users.id=topics.owner_id WHERE topics.active=false']
-
-        Topics.all(testTables, testKeys, testCompares, function(data) {
+        Topics.allWhere('active=false', function(data) {
             //res.send(data);
             res.render('home', data);
         });

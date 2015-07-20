@@ -21,6 +21,14 @@ module.exports.controller = function(app) {
         });
     });
 
+    //show the leaderboard
+    app.get('/leaderboard/:limit', function(req, res) {
+        var limit = 'LIMIT ' + req.params.limit;
+        Users.sort('points', 'DESC', limit, function(data) {
+            res.render('leaders', data);
+        });
+    })
+
     app.post('/newUser', function(req, res) {
         
         Users.create('users', req.body, function(data) {
@@ -28,4 +36,11 @@ module.exports.controller = function(app) {
         })
 
     });
+
+    //update a users score
+    app.get('/addpoints/:id', function(req, res) {
+        Users.addPoints(req.params.id, 10, function(data) {
+            res.redirect('/users');
+        })
+    })
 }

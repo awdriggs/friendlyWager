@@ -1,20 +1,24 @@
 var Wagers = require('../models/wager.js').Wager;
+var IpInfo = require("ipinfo");
 
-module.exports.controller = function(app) {
+module.exports.controller = function(app){
+	app.post('/newWager/:id', function(req, res) {
+        IpInfo(function(err, cLoc) {
 
-    // app.get('/topics', function(req, res) {
-        
-        
-    //     var testTables = ['topics', 'users', 'comments'];
-    //     var testCompares = ['topics.owner_id=users.id', 'comments.topic_id=topics.id']
+            var data = {
+                topic_id: req.params.id,
+                user_id: 5, //change later to be the session id
+                geo_id: cLoc.loc,
+                city: cLoc.city,
+                region: cLoc.region,
+                country: cLoc.country,
+                wager: req.body.wager
+            }
 
-
-    //     Topics.all(testTables, testKeys, testCompares, function(data) {
-    //         res.send(data);
-    //         //res.render('home', data);
-    //     });
-    // });
-    
-
-
+            
+            Wagers.create(data, function(){
+            	res.redirect('/topics/'+req.params.id)
+            });
+        });
+    });
 }

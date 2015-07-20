@@ -5,25 +5,44 @@
 		<a href="/users/{{user.id}}"><h3>{{user.username}}</h3></a>
 		<p>{{topic.creation_date}}</p>
 		<p>{{topic.city}} {{topic.region}} {{topic.country}}</p>
-		</div>
+	</div>
 	<h2>"{{topic.title}}"</h2>
 	{{{topic.description}}}
 	<a href='/topics/edit/{{topic.id}}'>edit</a>
+	
+	<h3>Wagers</h3>
+	<div id='wagers'>
+		<a name="wager"></a>
+		<form action='/newWager/{{topic.id}}' method="POST">
+			<input type="text" id="datetimepicker1" name="wager" placeholder="____/__/__ __:__">
+			<input type="submit" value="make wager">
+		</form>
+
+		{{#each wagers}}
+		<div class='wager'>
+			<div class='meta'>
+				<img src="{{img_url}}" alt="user icon" height="75" width="75">
+				<a href="/users/{{user_id}}"><h3>{{username}}</h3></a>
+				<p>{{creation_date}}</p>
+				<p>{{city}} {{region}} {{country}}</p>
+			</div>
+			<p>{{username}} predicts {{wager}}<p>
+		</div>
+		{{/each}}
+	</div>
+
+
 	<h3>Comments</h3>
 	<div id='comments'>
-	
-	<a name="comment"></a>
-	<form action='/newComment/{{topic.id}}' method="POST">
-		{{!-- <input type="text" name="comment"> --}}
-		<textarea name='comment' rows='4' cols='50'></textarea>
-		<p>supports markdown</p>
-		<input type="submit" value="add comment">
-	</form>
+		<a name="comment"></a>
+		<form action='/newComment/{{topic.id}}' method="POST">
+			{{!-- <input type="text" name="comment"> --}}
+			<textarea name='comment' rows='4' cols='50'></textarea>
+			<p>supports markdown</p>
+			<input type="submit" value="add comment">
+		</form>
 
-
-
-
-	{{#each comments}}
+		{{#each comments}}
 		<div class='comment'>
 			<div class='meta'>
 				<img src="{{img_url}}" alt="user icon" height="75" width="75">
@@ -34,10 +53,9 @@
 			{{{comment}}}
 			<a href="/comments/{{id}}">edit</a>
 		</div>
-	{{/each}}
+		{{/each}}
 	</div>
 
 </div>
 
 
-	

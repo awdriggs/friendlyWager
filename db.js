@@ -17,6 +17,7 @@ module.exports = {
         });
         this.end();
     },
+
     find: function(table, id, cb) {
         pg.connect(dbUrl, function(err, client, done) {
             client.query('SELECT * FROM ' + table + ' WHERE id=' + id, function(err, result) {
@@ -27,6 +28,18 @@ module.exports = {
         });
         this.end();
     },
+
+    sort: function(table, sort_columm, order, limit, cb) {
+        pg.connect(dbUrl, function(err, client, done) {
+            client.query('SELECT * FROM ' + table + ' ORDER BY ' + sort_columm + ' ' + order + ' ' + limit , function(err, result) {
+                done();
+                console.log(err);
+                cb(result.rows);
+            });
+        });
+        this.end();
+    },
+
     search: function(table, searchColumn, id, cb) {
         pg.connect(dbUrl, function(err, client, done) {
             client.query('SELECT * FROM ' + table + ' WHERE ' + searchColumn+ '=' +id, function(err, result) {
