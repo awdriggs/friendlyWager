@@ -34,11 +34,21 @@ module.exports.controller = function(app) {
     app.get('/topics/:id', function(req, res) {
         Topics.find(req.params.id, function(data) {
             canEdit(req, data);
-            res.render('singleTopic', data)
+            //if active, send to single topic
+            if (data.topic.active) {
+                //res.send(data);
+                res.render('singleTopic', data);
+            } else {
+                //if ended, grab the ranks, add ranks to data, send to endedTopic hb
+                Topics.getRank(req.params.id, function(rank) {
+                    data.rank = rank;
+                    //res.send(data);
+                    res.render('endedTopic', data);
+
+                });
+            } 
         });
     });
-
-
 
     //add a new topic
     app.post('/topics', function(req, res) {
@@ -90,7 +100,17 @@ module.exports.controller = function(app) {
     //give that user some points, return to this topic page
     //have the winner displayed!
     app.put('/topics/complete/:id', function(req, res) {
-        Topics.update(req.body, req.params.id, function(data) {
+        //do the query to order the wagers, 
+
+        //build data
+        //complete date
+        //active should become false, right now this is handled in the form,
+        //make the winner the top item in the return from that bitch of a query, winner!
+
+        //add points to the user with the user.id from the winner
+
+        Topics.complete(req.body, req.params.id, function(data) {
+            //res.send(data)
             res.redirect('/topics/' + req.params.id);
         })
     })
@@ -101,4 +121,10 @@ module.exports.controller = function(app) {
             res.redirect('/topics');
         });
     });
+
+    app.get('/testComplete', function(req, res) {
+        Topics.complete(8, function(rank) {
+            res.send(rank);
+        })
+    })
 }

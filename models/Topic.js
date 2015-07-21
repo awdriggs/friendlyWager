@@ -44,7 +44,7 @@ module.exports.Topic = {
 
             //join the comments to the single topic
             db.join(tables, keys, compares, function(comments) {
-                
+
                 //setup to grab the wagers
                 var keys = ['w.id', 'w.topic_id', 'w.user_id', 'w.creation_date', 'w.city', 'w.region', 'w.country', 'w.wager', 'u.username', 'u.img_url'];
                 var tables = ['wagers w', 'users u'];
@@ -70,7 +70,7 @@ module.exports.Topic = {
     },
 
     update: function(obj, id, callback) {
-        console.log("object in model: "+ obj);
+        console.log("object in model: " + obj);
         db.update('topics', obj, id, function(topic) {
             console.log('from model: ' + topic)
             callback(topic);
@@ -81,5 +81,56 @@ module.exports.Topic = {
         db.delete('topics', id, function(topic) {
             callback(topic);
         });
+    },
+    //this function makes me want to cry 
+    complete: function(obj, id, callback) {
+        //do an update to set active to false and set the completion data
+        db.update('topics', obj, id, function(topic) {
+            //order the wagers using the completion data
+            db.orderWagers(id, function(wagersRanked) { //need to write this into .db
+                var winner_id = wagersRanked[0].id
+                console.log('91, w_id'+ winner_id);
+                var winner = {
+                        winner_id: winner_id
+                    }
+                console.log('95, w object' + winner.winner_id)
+                    //do another update to topics, make the winner the topics.winner_id
+                db.update('topics', winner, id, function(topic_data) {
+
+                    //add points
+                    //find the winner current points, add 1 to it, send an update to users with the new points
+                    db.find('users', winner_id, function(winner_data) {
+                        //callback(winner_data[0]);
+                        console.log('points before ' + winner_data[0].points)
+                        var points = winner_data[0].points;
+                        points = points + 1;
+
+                        var object = {
+                            points: points
+                        }
+                        console.log('points after in obj' + object.points);
+
+                        db.update('users', object, winner_id, function(winner_data2) {
+                            console.log(winner_data2);
+                            callback(winner_data2);
+                        });
+                    });
+                });
+            });
+        });
+    },
+
+    getRank: function(id, callback) {
+        db.orderWagers(id, function(wagersRanked) { //need to write this into .db
+            callback(wagersRanked);
+        });
     }
 }
+
+//Users.findUserById(req.params.id, function(user) {
+// var points = user.points
+// points = points + 1;
+
+//     var obj = {
+//         points: points
+//     }

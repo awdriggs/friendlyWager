@@ -94,7 +94,6 @@ module.exports.controller = function(app) {
     });
 
     //update a users score!
-
     app.get('/addpoints/:id', function(req, res) {
         Users.findUserById(req.params.id, function(user) {
             var points = user.points

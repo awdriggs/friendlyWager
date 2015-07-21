@@ -1,0 +1,54 @@
+ended topic hb
+<div class='topic'>
+	<div class='meta'>
+		<img src="{{user.img_url}}" alt="user icon" height="75" width="75">
+		<a href="/users/{{user.id}}"><h3>{{user.username}}</h3></a>
+		<p>{{topic.creation_date}}</p>
+		<p>{{topic.city}} {{topic.region}} {{topic.country}}</p>
+	</div>
+	<h2>"{{topic.title}}"</h2>
+	{{{topic.description}}}
+	
+	<a name="wager"></a>
+	<h3>Wagers</h3>
+
+	<div id='wagers'>
+		insert table for rank<br>
+		{{#each rank}}
+			{{id}}, {{username}}, {{wager}}, {{time_diff}}<br>
+		{{/each}}
+	</div>
+
+
+	<h3>Comments</h3>
+	<div id='comments'>
+		<a name="comment"></a>
+		<form action='/newComment/{{topic.id}}' method="POST">
+			{{!-- <input type="text" name="comment"> --}}
+			<textarea name='comment' rows='4' cols='50'></textarea>
+			<p>supports markdown</p>
+			<input type="submit" value="add comment">
+		</form>
+
+		{{#each comments}}
+		<div class='comment'>
+			<div class='meta'>
+				<img src="{{img_url}}" alt="user icon" height="75" width="75">
+				<a href="/users/{{user_id}}"><h3>{{username}}</h3></a>
+				<p>{{creation_date}}</p>
+				<p>{{city}} {{region}} {{country}}</p>
+			</div>
+			{{{comment}}}
+			
+			{{#if edit}}
+			<br>
+			<a class='edit' href="/comments/{{id}}">edit</a>
+			{{/if}}
+
+		</div>
+		{{/each}}
+	</div>
+
+</div>
+
+

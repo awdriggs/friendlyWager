@@ -248,6 +248,18 @@ module.exports = {
                 });
             });
         });
+        this.end(); // added this and haven't test, remove it breaks shit!
+    },
+
+    orderWagers: function(topic_id, cb) {
+        pg.connect(dbUrl, function(err, client, done) {
+            var query = "SELECT u.id, u.username, w.wager, t.complete_date, ((DATE_PART('day', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP) * 24 + DATE_PART('hour', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP)) * 60 + DATE_PART('minute', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP)) * 60 + DATE_PART('second', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP) AS time_diff FROM wagers w JOIN users u ON u.id = w.user_id JOIN topics t ON t.id = w.topic_id WHERE w.topic_id = $1 ORDER BY time_diff;";
+            client.query(query, [topic_id], function(err, rank) {
+
+                cb(rank.rows);
+            });
+        });
+        this.end();
     }
 
 };
