@@ -1,48 +1,48 @@
 var db = require('./db.js');
 
-// var users = ['awdriggs', 'clarkj', 'sambennett13'];
-// var photos = ['http://media.giphy.com/media/DgaabECbM9gc0/giphy.gif', 'http://media.giphy.com/media/RQgzLsPYlzrBC/giphy.gif', 'http://media.giphy.com/media/3o85xk9poU2TrP2JUY/giphy.gif'];
-// var firsts = ['adam', 'joe', 'sam'];
-// var lasts = ['driggers', 'clark', 'bennett'];
-// var passwords = ['a', 'j', 's'];
+var users = ['awdriggs', 'clarkj', 'sambennett13'];
+var photos = ['http://media.giphy.com/media/DgaabECbM9gc0/giphy.gif', 'http://media.giphy.com/media/RQgzLsPYlzrBC/giphy.gif', 'http://media.giphy.com/media/3o85xk9poU2TrP2JUY/giphy.gif'];
+var firsts = ['adam', 'joe', 'sam'];
+var lasts = ['driggers', 'clark', 'bennett'];
+var passwords = ['a', 'j', 's'];
 
-// var adam = {
-// 	username: users[0],
-// 	first: firsts[0],
-// 	last: lasts[0],
-// 	password: passwords[0],
-// 	img_url: photos[0]
-// };
+var adam = {
+	username: users[0],
+	first: firsts[0],
+	last: lasts[0],
+	password: passwords[0],
+	img_url: photos[0]
+};
 
-// var joe = {
-// 	username: users[1],
-// 	first: firsts[1],
-// 	last: lasts[1],
-// 	password: passwords[1],
-// 	img_url: photos[1]
-// };
+var joe = {
+	username: users[1],
+	first: firsts[1],
+	last: lasts[1],
+	password: passwords[1],
+	img_url: photos[1]
+};
 
-// var sam = {
-// 	username: users[2],
-// 	first: firsts[2],
-// 	last: lasts[2],
-// 	password: passwords[2],
-// 	img_url: photos[2]
-// };
+var sam = {
+	username: users[2],
+	first: firsts[2],
+	last: lasts[2],
+	password: passwords[2],
+	img_url: photos[2]
+};
 
-// db.create('users', adam, function(user){
-// 	console.log(user.first + " created");
-// });
-
-
-// db.create('users', sam, function(user){
-// 	console.log(user.first + " created");
-// });
+db.create('users', adam, function(user){
+	console.log(user.first + " created");
+});
 
 
-// db.create('users', joe, function(user){
-// 	console.log(user.first + " created");
-// });
+db.create('users', sam, function(user){
+	console.log(user.first + " created");
+});
+
+
+db.create('users', joe, function(user){
+	console.log(user.first + " created");
+});
 
 // var topics = ['When will Joe grow a beard?'];
 // var descriptions = ['Given history, its not very likely that joe will be able to grow a beard'];
@@ -66,16 +66,16 @@ var db = require('./db.js');
 // 	console.log(topic + " created");
 // } )
 
-var comments = {
-	topic_id: 4,
-	user_id: 1,
-	geo_id: '38.898748, -77.037684',
-	city: 'Washington',
-	region: 'DC',
-	country: 'US',
-	comment: 'Dont poke the bear'
-}
+// var comments = {
+// 	topic_id: 4,
+// 	user_id: 1,
+// 	geo_id: '38.898748, -77.037684',
+// 	city: 'Washington',
+// 	region: 'DC',
+// 	country: 'US',
+// 	comment: 'Dont poke the bear'
+// }
 
-db.create('comments', comments, function(done){
-	console.log(done.id);
-})
+// db.create('comments', comments, function(done){
+// 	console.log(done.id);
+// })

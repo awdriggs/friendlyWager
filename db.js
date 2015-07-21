@@ -1,6 +1,7 @@
 //orm
 var pg = require('pg');
-var dbUrl = "pg://localhost/friendly_wager_db";
+//var dbUrl = "pg://localhost/friendly_wager_db";
+var dbUrl = process.env.DATABASE_URL
 
 //making this avaible to other js files
 module.exports = {
