@@ -29,11 +29,8 @@
 			<div class='wager'>
 				<div class='meta'>
 					<img src="{{img_url}}" alt="user icon" height="75" width="75">
-					<a href="/users/{{user_id}}"><h3>{{username}}</h3></a>
-					<p>{{creation_date}}</p>
-					<p>{{city}} {{region}} {{country}}</p>
+					<a href="/users/{{user_id}}"><h3>{{username}}</a> predicts</h3> <p>{{wager}}</p>
 				</div>
-				<p>{{username}} predicts {{wager}}<p>
 			</div>
 		{{/each}}
 	</div>
@@ -60,7 +57,7 @@
 			{{{comment}}}
 			
 			{{#if edit}}
-			<br>
+			
 			<a class='edit' href="/comments/{{id}}">edit</a>
 			{{/if}}
 

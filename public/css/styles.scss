@@ -7,6 +7,11 @@
 
 }
 
+@mixin border($color, $radius){
+	border: 2px solid $color;
+	border-radius: $radius + px;
+}
+
 /*Variables*/
 $title_font:'Kadwa', serif;
 $body_font: 'Cutive', serif;
@@ -15,7 +20,9 @@ $yellow: #f7ef81; //rgba(247, 239, 129, 100)
 $orange: #f2a359; //rgba(242, 163, 89, 100)
 $green: #88ab75; //rgba(136, 171, 117, 100)
 $blue: #006992; //rgba(0, 105, 146, 100)
-$grey: #8fb3b7; //rgba(143, 179, 183, 100)
+$grey: #D6D6D6;
+$light-blue: #8fb3b7; //rgba(143, 179, 183, 100)
+$white: #EDEFEF;
 
 html {
 	font-size: 62.5%; /* Sets up the Base 10 stuff */
@@ -23,6 +30,10 @@ html {
 
 body{
 	padding: 5px;
+	
+	a{
+		color: $blue;
+	}
 
 	
 }
@@ -36,7 +47,7 @@ body{
 }
 #logo {
 	width: 100%;
-	background-color: $yellow;
+	// background-color: $yellow;
 	margin: 1rem 0;
 	h1 {
 		font-family: $title_font;
@@ -62,8 +73,23 @@ nav{
 		margin: 0 0 0 2%;
 		padding-top: 1.5rem;
 		display: inline-block;
-		background-color: $orange;
+		
+		// background-color: $orange;
+		@include border($blue, 5);
 		text-align: center;
+	}
+
+	a, a:visited{
+		text-decoration: none;
+		color: $blue;
+	}
+
+	li:hover{
+		background-color: $blue;
+	}
+
+	a:hover{
+		color: white;
 	}
 }
 
@@ -90,19 +116,32 @@ nav{
 
 .topic{
 	@include font-size(2);
+	@include border($white, 5);
 	padding: 2rem;
-	background-color: $grey;
+	background-color: $white;
 	margin: 1rem auto;
+	
+
 	a, a:visited{
 		text-decoration: none;
-		color: black;
+		
 	}
 	a:hover{
-		color: $blue;
+		color: $orange;
 	}
 
 	p{
 		display: inline-block;
+		margin: 1rem 0;
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
+
+	.edit{
+		font-family: Arial, Sans-Serif;
+		font-size: 2rem;
+		float: right;
+		margin: .5rem 0;
 	}
 
 	h2{
@@ -110,9 +149,13 @@ nav{
 	}
 
 	.meta{
-		height: 75px;
-		background-color: $orange;
+		border-bottom-left-radius: 39px;
+    	border-top-left-radius: 39px;
+    	margin-right: -2.1rem;
 
+		height: 75px;
+		background-color: $grey;
+		padding: .5rem;
 		h3{
 			margin: 0;
 			padding: 1rem;
@@ -121,12 +164,13 @@ nav{
 		p{
 			
 			@include font-size(1);
-			margin: 0;
+			
 		}
 
 		img{
 			float: left;
 			margin: 0 1rem 0 0;
+			border-radius: 50%;
 		}
 
 	}
@@ -150,6 +194,10 @@ nav{
 			padding-top:1.5rem;
 			text-align: center;
 		}
+	}
+
+	.comment, .wager{
+		margin: 2rem 0;
 	}
 	
 }
