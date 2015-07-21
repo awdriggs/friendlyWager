@@ -42,16 +42,19 @@ module.exports.Topic = {
             var tables = ['comments c', 'users u'];
             var compares = ['c.user_id=u.id WHERE c.topic_id=' + id]
 
-
+            //join the comments to the single topic
             db.join(tables, keys, compares, function(comments) {
-                //set to grab the wagers
+                
+                //setup to grab the wagers
                 var keys = ['w.id', 'w.topic_id', 'w.user_id', 'w.creation_date', 'w.city', 'w.region', 'w.country', 'w.wager', 'u.username', 'u.img_url'];
                 var tables = ['wagers w', 'users u'];
                 var compares = ['w.user_id=u.id WHERE w.topic_id=' + id]
 
+                //join the wagers to single topic
                 db.join(tables, keys, compares, function(wagers) {
+                    //find the user related to this topic
                     db.findRelations('users', 'id', topic[0].owner_id, function(user) {
-                            
+                        //wrap all in a data object
                         var data = {
                             topic: topic[0],
                             comments: comments,

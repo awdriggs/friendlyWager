@@ -31,6 +31,11 @@ module.exports = {
 
     findWithCompare: function(table, where, search, cb) {
         pg.connect(dbUrl, function(err, client, done) {
+
+            var query = ('SELECT * FROM ' + table + ' WHERE ' + where + '=$1');
+            console.log("fucked query " + query);
+
+
             client.query('SELECT * FROM ' + table + ' WHERE ' + where + '=$1', [search], function(err, result) {
                 done();
                 console.log(err);
@@ -42,6 +47,9 @@ module.exports = {
 
     sort: function(table, sort_columm, order, limit, cb) {
         pg.connect(dbUrl, function(err, client, done) {
+
+            var query = 'SELECT * FROM ' + table + ' ORDER BY ' + sort_columm + ' ' + order + ' ' + limit;
+            console.log(query);
             client.query('SELECT * FROM ' + table + ' ORDER BY ' + sort_columm + ' ' + order + ' ' + limit, function(err, result) {
                 done();
                 console.log(err);
@@ -211,6 +219,35 @@ module.exports = {
             });
         });
         this.end(); //can't remember why i used pg.end instead of this.end
+    },
+
+    singleUser: function(id, cb) {
+
+        pg.connect(dbUrl, function(err, client, done) {
+            //set query to get the user
+            var query = 'SELECT * FROM users WHERE id=' + id;
+            client.query(query, function(err, user) {
+                //set query for topics
+                query = 'SELECT topics.title, topics.id FROM topics JOIN users ON users.id = topics.owner_id WHERE topics.owner_id=' + id;
+                client.query(query, function(err, topics) {
+                    //set query for comments
+                    query = 'SELECT topics.title, topics.id, comments.comment FROM comments JOIN users ON users.id = comments.user_id JOIN topics ON topics.id = comments.topic_id WHERE comments.user_id=' + id;
+                    client.query(query, function(err, comments) {
+                        //set query for wagers
+                        query = 'SELECT t.title, t.id, w.wager FROM wagers w JOIN users u ON u.id = w.user_id JOIN topics t ON t.id = w.topic_id WHERE w.user_id=' + id;
+                        client.query(query, function(err, wagers) {
+                            var data = {
+                                user: user.rows[0],
+                                topics: topics.rows,
+                                comments: comments.rows,
+                                wagers: wagers.rows
+                            }
+                            cb(data);
+                        });
+                    });
+                });
+            });
+        });
     }
 
 };

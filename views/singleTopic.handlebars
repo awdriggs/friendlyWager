@@ -11,25 +11,30 @@
 	{{#if topic.edit}}
 	<a href='/topics/edit/{{topic.id}}'>edit</a>
 	{{/if}}
-
+	
+	<a name="wager"></a>
 	<h3>Wagers</h3>
+
 	<div id='wagers'>
-		<a name="wager"></a>
-		<form action='/newWager/{{topic.id}}' method="POST">
-			<input type="text" id="datetimepicker1" name="wager" placeholder="____/__/__ __:__">
-			<input type="submit" value="make wager">
-		</form>
+		{{#if topic.active}}
+			{{#unless topic.edit}}
+				<form action='/newWager/{{topic.id}}' method="POST">
+					<input type="text" id="datetimepicker1" name="wager" placeholder="____/__/__ __:__">
+					<input type="submit" value="make wager">
+				</form>
+			{{/unless}}
+		{{/if}}
 
 		{{#each wagers}}
-		<div class='wager'>
-			<div class='meta'>
-				<img src="{{img_url}}" alt="user icon" height="75" width="75">
-				<a href="/users/{{user_id}}"><h3>{{username}}</h3></a>
-				<p>{{creation_date}}</p>
-				<p>{{city}} {{region}} {{country}}</p>
+			<div class='wager'>
+				<div class='meta'>
+					<img src="{{img_url}}" alt="user icon" height="75" width="75">
+					<a href="/users/{{user_id}}"><h3>{{username}}</h3></a>
+					<p>{{creation_date}}</p>
+					<p>{{city}} {{region}} {{country}}</p>
+				</div>
+				<p>{{username}} predicts {{wager}}<p>
 			</div>
-			<p>{{username}} predicts {{wager}}<p>
-		</div>
 		{{/each}}
 	</div>
 
@@ -55,9 +60,10 @@
 			{{{comment}}}
 			
 			{{#if edit}}
-			<a class='edit {{user_id}}' href="/comments/{{id}}">edit</a>
+			<br>
+			<a class='edit' href="/comments/{{id}}">edit</a>
 			{{/if}}
-			
+
 		</div>
 		{{/each}}
 	</div>

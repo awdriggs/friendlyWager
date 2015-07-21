@@ -1,4 +1,5 @@
 <div class='topic'>
+	
 	<form action="/topics/{{topic.id}}" method="POST" id="edit">
 		<input type="hidden" name="_method" value="PUT">
 
@@ -12,23 +13,23 @@
 			<textarea name="description" form="edit" rows="4" cols="50">{{{topic.description}}}</textarea>
 			<p>supports markdown</p>
 		</label><br>
-
-		Set Status
-		<br>
-		<input type="radio" name="active" value="true" checked>Active
-		<br>
-		<input type="radio" name="active" value="false">Over
-		<br>
-
-		Set Date
-		<br>
-		<input type="text" id="datetimepicker1" name="complete_date" value='{{topic.complete_date}}'>
-		 	
-	
 		<input type="submit" value="Submit">
 	</form>
+</div>
+	
+<div class='topic'>	
+	Set the completion date to end the wager.
+	<form action="/topics/complete/{{topic.id}}" method="POST">
+		<input type="hidden" name="_method" value="PUT">
+		<input type="text" id="datetimepicker1" name="complete_date" value='{{topic.complete_date}}'>
+		<input type="hidden" name="active" value="false">
+		<input type="submit" value="End">
+	</form>
+</div>
 
-<form action="/topics/{{topic.id}}" method="POST">
-	<input type="hidden" name="_method" value="DELETE">
-	<input type="submit" value="delete">
+<div class='topic'>
+	<form action="/topics/{{topic.id}}" method="POST">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="submit" value="delete">
+	</form>
 </div>

@@ -61,6 +61,8 @@ module.exports.controller = function(app) {
         });
     });
 
+
+
     //edit page
     app.get('/topics/edit/:id', function(req, res) {
         Topics.find(req.params.id, function(data) {
@@ -79,6 +81,19 @@ module.exports.controller = function(app) {
             res.redirect('/topics/' + req.params.id);
         });
     });
+
+    //all the fancy time checks should go here!
+    //maybe refactor into the helper once they are complete
+
+    //psuedo
+    //on complete, check to see which user had the closest guess, sql function?
+    //give that user some points, return to this topic page
+    //have the winner displayed!
+    app.put('/topics/complete/:id', function(req, res) {
+        Topics.update(req.body, req.params.id, function(data) {
+            res.redirect('/topics/' + req.params.id);
+        })
+    })
 
     //process delete
     app.delete('/topics/:id', function(req, res) {
