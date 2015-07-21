@@ -1,14 +1,16 @@
 ended topic hb
 <div class='topic'>
 	<div class='meta'>
-		<img src="{{user.img_url}}" alt="user icon" height="75" width="75">
+		<img src="{{user.img_url}}" alt="user icon">
 		<a href="/users/{{user.id}}"><h3>{{user.username}}</h3></a>
 		<p>{{topic.creation_date}}</p>
 		<p>{{topic.city}} {{topic.region}} {{topic.country}}</p>
 	</div>
 	<h2>"{{topic.title}}"</h2>
 	{{{topic.description}}}
-	
+</div>
+
+<div class='topic'>	
 	<a name="wager"></a>
 	<h3>Wagers</h3>
 
@@ -18,8 +20,9 @@ ended topic hb
 			{{id}}, {{username}}, {{wager}}, {{time_diff}}<br>
 		{{/each}}
 	</div>
+</div>
 
-
+<div class='topic'>
 	<h3>Comments</h3>
 	<div id='comments'>
 		<a name="comment"></a>

@@ -13,7 +13,13 @@ console.log(marked('I am using __markdown__.'));
 var fs = require('fs');
 
 
-app.listen(3000);
+//app.listen(3000);
+
+//for heroku
+app.set('port', (process.env.PORT || 3000));
+app.listen(app.get('port'), function () {
+  console.log("App running on port : ", app.get('port'));
+});
 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',

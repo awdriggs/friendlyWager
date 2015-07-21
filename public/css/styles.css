@@ -8,6 +8,8 @@ body {
   padding: 5px; }
   body a {
     color: #006992; }
+  body h3 {
+    margin: 0; }
 
 #wrapper {
   width: 100%;
@@ -107,7 +109,10 @@ nav {
     .topic .meta img {
       float: left;
       margin: 0 1rem 0 0;
-      border-radius: 50%; }
+      border-radius: 50%;
+      overflow: hidden;
+      width: 75px;
+      height: 75px; }
   .topic .stats {
     display: flex;
     text-align: center; }
@@ -126,5 +131,8 @@ nav {
       text-align: center; }
   .topic .comment, .topic .wager {
     margin: 2rem 0; }
+
+.meta {
+  background-color: #f7ef81; }
 
 /*# sourceMappingURL=styles.css.map */

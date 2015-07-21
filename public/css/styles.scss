@@ -35,6 +35,10 @@ body{
 		color: $blue;
 	}
 
+	h3{
+		margin: 0;
+	}
+
 	
 }
 
@@ -171,6 +175,9 @@ nav{
 			float: left;
 			margin: 0 1rem 0 0;
 			border-radius: 50%;
+			overflow: hidden;
+			width: 75px;
+			height: 75px;
 		}
 
 	}
@@ -202,7 +209,6 @@ nav{
 	
 }
 
-.wagers {
-
-	// .topic
+.meta {
+	background-color: $yellow;
 }
