@@ -12,7 +12,6 @@ module.exports = {
         pg.connect(dbUrl, function(err, client, done) {
             client.query('SELECT * FROM ' + table, function(err, result) {
                 done();
-                console.log(err);
                 cb(result.rows); //this has to be done to get the result.rows out of the function, return wont work
             });
         });
@@ -23,7 +22,6 @@ module.exports = {
         pg.connect(dbUrl, function(err, client, done) {
             client.query('SELECT * FROM ' + table + ' WHERE id=' + id, function(err, result) {
                 done();
-                console.log(err);
                 cb(result.rows);
             });
         });
@@ -34,12 +32,9 @@ module.exports = {
         pg.connect(dbUrl, function(err, client, done) {
 
             var query = ('SELECT * FROM ' + table + ' WHERE ' + where + '=$1');
-            console.log("fucked query " + query);
-
 
             client.query('SELECT * FROM ' + table + ' WHERE ' + where + '=$1', [search], function(err, result) {
                 done();
-                console.log(err);
                 cb(result.rows);
             });
         });
@@ -135,12 +130,6 @@ module.exports = {
     },
     lJoin: function(tb1, tb2, keysString, compare1, compare2, cb) {
         pg.connect(dbUrl, function(err, client, done) {
-            // var columns = [];
-            // var 
-            // object.keys(obj).forEach(function (key, i){
-            //     columns.push(key);
-
-            // });
             var keys = keysString
             var query = 'SELECT ' + keys + " FROM " + tb1 + " LEFT JOIN " + tb2 + " ON " + compare1 + "=" + compare2
 
@@ -235,8 +224,10 @@ module.exports = {
                     query = 'SELECT topics.title, topics.id, comments.comment FROM comments JOIN users ON users.id = comments.user_id JOIN topics ON topics.id = comments.topic_id WHERE comments.user_id=' + id;
                     client.query(query, function(err, comments) {
                         //set query for wagers
-                        query = 'SELECT t.title, t.id, w.wager FROM wagers w JOIN users u ON u.id = w.user_id JOIN topics t ON t.id = w.topic_id WHERE w.user_id=' + id;
+                        query = "SELECT t.title, t.id, to_char(w.wager, 'MM/DD/YY HH12:MI:SS') AS WAGER FROM wagers w JOIN users u ON u.id = w.user_id JOIN topics t ON t.id = w.topic_id WHERE w.user_id=" + id;
                         client.query(query, function(err, wagers) {
+                            console.log(err || wagers);
+
                             var data = {
                                 user: user.rows[0],
                                 topics: topics.rows,
@@ -254,7 +245,7 @@ module.exports = {
 
     orderWagers: function(topic_id, cb) {
         pg.connect(dbUrl, function(err, client, done) {
-            var query = "SELECT u.id, u.username, w.wager, t.complete_date, ((DATE_PART('day', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP) * 24 + DATE_PART('hour', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP)) * 60 + DATE_PART('minute', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP)) * 60 + DATE_PART('second', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP) AS time_diff FROM wagers w JOIN users u ON u.id = w.user_id JOIN topics t ON t.id = w.topic_id WHERE w.topic_id = $1 ORDER BY time_diff;";
+            var query = "SELECT u.id, u.username, to_char(w.wager, 'MM/DD/YY HH12:MI:SS') AS wager, t.complete_date, ((DATE_PART('day', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP) * 24 + DATE_PART('hour', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP)) * 60 + DATE_PART('minute', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP)) * 60 + DATE_PART('second', w.wager::TIMESTAMP - t.complete_date::TIMESTAMP) AS time_diff FROM wagers w JOIN users u ON u.id = w.user_id JOIN topics t ON t.id = w.topic_id WHERE w.topic_id = $1 ORDER BY time_diff;";
             client.query(query, [topic_id], function(err, rank) {
 
                 cb(rank.rows);

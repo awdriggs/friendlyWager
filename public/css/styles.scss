@@ -148,6 +148,7 @@ nav {
 	@include font-size(2);
 	@include border($white, 5);
 	padding: 2rem;
+	padding-bottom: 0;
 	background-color: $white;
 	margin: 1rem auto;
 	line-height: 3rem;
@@ -187,6 +188,7 @@ nav {
 		height: 75px;
 		background-color: $grey;
 		padding: .5rem;
+		
 		h3{
 			margin: 0;
 			padding: 1rem;
@@ -194,7 +196,7 @@ nav {
 
 		p{
 			
-			@include font-size(1);
+			margin: 0;
 			
 		}
 
@@ -220,6 +222,7 @@ nav {
 	
 	.topic_actions{
 		display: flex;
+		padding-bottom: 1rem;
 		a{	
 			@include border($grey, 10);
 			background-color: $grey;
@@ -229,6 +232,7 @@ nav {
 			@include font-size(3);
 			padding-top:1.5rem;
 			text-align: center;
+
 		}
 
 		a:hover{
@@ -314,6 +318,8 @@ input:focus, textarea:focus{
 
 @media only screen and (min-width: 600px) {
 	#menu {
+		width: 600px;
+
 		li{
 			display: inline-block;
 			width: 45%;
@@ -370,11 +376,12 @@ input:focus, textarea:focus{
 
 
 }
+
 table {
   border-spacing: 0;
   border-collapse: collapse;
   text-align: center;
-  
+  margin-bottom: 1rem;
 
 
   tbody{

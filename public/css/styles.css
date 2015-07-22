@@ -91,6 +91,7 @@ nav {
   border: 2px solid #edefef;
   border-radius: 5px;
   padding: 2rem;
+  padding-bottom: 0;
   background-color: #edefef;
   margin: 1rem auto;
   line-height: 3rem; }
@@ -122,8 +123,7 @@ nav {
       margin: 0;
       padding: 1rem; }
     .topic .meta p {
-      font-size: 10px;
-      font-size: 1rem; }
+      margin: 0; }
     .topic .meta img {
       float: left;
       margin: 0 1rem 0 0;
@@ -137,7 +137,8 @@ nav {
     .topic .stats p {
       width: 50%; }
   .topic .topic_actions {
-    display: flex; }
+    display: flex;
+    padding-bottom: 1rem; }
     .topic .topic_actions a {
       border: 2px solid #d6d6d6;
       border-radius: 10px;
@@ -212,10 +213,12 @@ input:focus, textarea:focus {
    Media Queries
    ========================================================================== */
 @media only screen and (min-width: 600px) {
-  #menu li {
-    display: inline-block;
-    width: 45%;
-    margin: 1rem 0 1rem 3%; }
+  #menu {
+    width: 600px; }
+    #menu li {
+      display: inline-block;
+      width: 45%;
+      margin: 1rem 0 1rem 3%; }
 
   .button {
     width: 230px; }
@@ -250,7 +253,8 @@ input:focus, textarea:focus {
 table {
   border-spacing: 0;
   border-collapse: collapse;
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 1rem; }
   table tbody {
     border-top: 1px solid #ddd;
     border-left: 1px solid #dddddd;

@@ -14,7 +14,7 @@ module.exports.Topic = {
     },
 
     allWhere: function(where, callback) {
-        var keysArray = ['topics.id', 'topics.title', 'topics.creation_date', 'topics.active', 'topics.city', 'topics.country', 'topics.owner_id', 'users.username AS owner_username', 'users.img_url']
+        var keysArray = ['topics.id', 'topics.title', "to_char(topics.creation_date , 'MM/DD/YY HH12:MI:SS') AS creation_date", 'topics.active', 'topics.city', 'topics.country', 'topics.owner_id', 'users.username AS owner_username', 'users.img_url']
         var tableArray = ['topics', 'users'];
         var compareArray = ['users.id=topics.owner_id WHERE ' + where]
 
@@ -35,10 +35,10 @@ module.exports.Topic = {
     },
 
     find: function(id, callback) {
-        db.find('topics', id, function(topic) {
+        db.find('topics', id, function(topic) { //rewrite this to get the topic date in correct format
 
             //set to grab the comments
-            var keys = ['c.id', 'c.topic_id', 'c.user_id', 'c.creation_date', 'c.city', 'c.region', 'c.country', 'c.comment', 'u.username', 'u.img_url'];
+            var keys = ['c.id', 'c.topic_id', 'c.user_id', "to_char(c.creation_date , 'MM/DD/YY HH12:MI:SS') AS creation_date", 'c.city', 'c.region', 'c.country', 'c.comment', 'u.username', 'u.img_url'];
             var tables = ['comments c', 'users u'];
             var compares = ['c.user_id=u.id WHERE c.topic_id=' + id]
 
@@ -46,7 +46,7 @@ module.exports.Topic = {
             db.join(tables, keys, compares, function(comments) {
 
                 //setup to grab the wagers
-                var keys = ['w.id', 'w.topic_id', 'w.user_id', 'w.creation_date', 'w.city', 'w.region', 'w.country', 'w.wager', 'u.username', 'u.img_url'];
+                var keys = ['w.id', 'w.topic_id', 'w.user_id', "to_char(w.creation_date , 'MM/DD/YY HH12:MI:SS') AS creation_date", 'w.city', 'w.region', 'w.country', "to_char(w.wager , 'MM/DD/YY HH12:MI:SS') AS wager", 'u.username', 'u.img_url'];
                 var tables = ['wagers w', 'users u'];
                 var compares = ['w.user_id=u.id WHERE w.topic_id=' + id]
 
@@ -127,10 +127,8 @@ module.exports.Topic = {
     }
 }
 
-//Users.findUserById(req.params.id, function(user) {
-// var points = user.points
-// points = points + 1;
+//find active
+//SELECT topics.id, topics.title, to_char(topics.creation_date , 'MM/DD/YY HH12:MI:SS') AS creation_date, topics.active, topics.city, topics.country, topics.owner_id, users.username AS owner_username, users.img_url, (SELECT COUNT(wagers.topic_id) FROM wagers WHERE wagers.topic_id = topics.id) as wager_count, (SELECT COUNT(comments.topic_id) FROM comments WHERE comments.topic_id = topics.id) as comment_count FROM topics JOIN users ON users.id=topics.owner_id WHERE active=true;
 
-//     var obj = {
-//         points: points
-//     }
+//find inactive
+//SELECT topics.id, topics.title, to_char(topics.creation_date , 'MM/DD/YY HH12:MI:SS') AS creation_date, topics.active, topics.city, topics.country, topics.owner_id, users.username AS owner_username, users.img_url, (SELECT COUNT(wagers.topic_id) FROM wagers WHERE wagers.topic_id = topics.id) as wager_count, (SELECT COUNT(comments.topic_id) FROM comments WHERE comments.topic_id = topics.id) as comment_count FROM topics JOIN users ON users.id=topics.owner_id WHERE active=false;
