@@ -1,57 +1,68 @@
-ended topic hb
-<div class='topic'>
-	<div class='meta'>
-		<img src="{{user.img_url}}" alt="user icon">
-		<a href="/users/{{user.id}}"><h3>{{user.username}}</h3></a>
-		<p>{{topic.creation_date}}</p>
-		<p>{{topic.city}} {{topic.region}} {{topic.country}}</p>
-	</div>
-	<h2>"{{topic.title}}"</h2>
-	{{{topic.description}}}
-</div>
-
-<div class='topic'>	
-	<a name="wager"></a>
-	<h3>Wagers</h3>
-
-	<div id='wagers'>
-		insert table for rank<br>
-		{{#each rank}}
-			{{id}}, {{username}}, {{wager}}, {{time_diff}}<br>
-		{{/each}}
-	</div>
-</div>
-
-<div class='topic'>
-	<h3>Comments</h3>
-	<div id='comments'>
-		<a name="comment"></a>
-		<form action='/newComment/{{topic.id}}' method="POST">
-			{{!-- <input type="text" name="comment"> --}}
-			<textarea name='comment' rows='4' cols='50'></textarea>
-			<p>supports markdown</p>
-			<input type="submit" value="add comment">
-		</form>
-
-		{{#each comments}}
-		<div class='comment'>
-			<div class='meta'>
-				<img src="{{img_url}}" alt="user icon" height="75" width="75">
-				<a href="/users/{{user_id}}"><h3>{{username}}</h3></a>
-				<p>{{creation_date}}</p>
-				<p>{{city}} {{region}} {{country}}</p>
-			</div>
-			{{{comment}}}
-			
-			{{#if edit}}
-			<br>
-			<a class='edit' href="/comments/{{id}}">edit</a>
-			{{/if}}
-
+<div id='topic-wrapper'>
+	<div class='topic'>
+		<div class='meta'>
+			<img src="{{user.img_url}}" alt="user icon">
+			<a href="/user/{{user.id}}"><h3>{{user.username}}</h3></a>
+			<p>{{topic.creation_date}}</p>
+			<p>{{topic.city}} {{topic.region}} {{topic.country}}</p>
 		</div>
-		{{/each}}
+		<h2>"{{topic.title}}"</h2>
+		{{{topic.description}}}
 	</div>
 
+	<div class='topic'>	
+		<a name="wager"></a>
+		<h3>Wagers</h3>
+
+		<div id='wagers'>
+			<table style="width:100%">
+				<tr>
+					<th>Username</th>
+					<th>Wager</th>
+					<th>Seconds Off</th>
+				</tr>
+				{{#each rank}}
+					<tr>
+						<td><a href="/user/{{id}}">{{username}}</td>
+						<td>{{wager}}</td>
+						<td>{{time_diff}}</td>
+					</tr>
+				{{/each}}
+			</table>
+		</div>
+	</div>
+
+	<div class='topic'>
+		<h3>Comments</h3>
+		<div id='comments'>
+			<a name="comment"></a>
+			<form action='/newComment/{{topic.id}}' method="POST">
+				{{!-- <input type="text" name="comment"> --}}
+				<textarea name='comment' rows='10' cols='50'></textarea>
+				<p>supports markdown</p>
+				<input class="button" type="submit" value="comment">
+			</form>
+
+			{{#each comments}}
+			<div class='comment'>
+				<div class='meta'>
+					<img src="{{img_url}}" alt="user icon" height="75" width="75">
+					<a href="/user/{{user_id}}"><h3>{{username}}</h3></a>
+					<p>{{creation_date}}</p>
+					<p>{{city}} {{region}} {{country}}</p>
+				</div>
+				{{{comment}}}
+
+				{{#if edit}}
+				<br>
+				<a class='edit' href="/comments/{{id}}">edit</a>
+				{{/if}}
+
+			</div>
+			{{/each}}
+		</div>
+
+	</div>
 </div>
 
 

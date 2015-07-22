@@ -1,74 +1,86 @@
-<p id='user'>{{sessionId}}</p>
 
-<div class='topic'>
-	<div class='meta'>
-		<img src="{{user.img_url}}" alt="user icon">
-		<a href="/users/{{user.id}}"><h3>{{user.username}}</h3></a>
-		<p>{{topic.creation_date}}</p>
-		<p>{{topic.city}} {{topic.region}} {{topic.country}}</p>
-	</div>
-	<h2>"{{topic.title}}"</h2>
-	{{{topic.description}}}
-	{{#if topic.edit}}
-	<a href='/topics/edit/{{topic.id}}' class="edit">edit</a>
-	{{/if}}
-</div>
-
-<div class='topic'>
-	<a name="wager"></a>
-	<h3>Wagers</h3>
-
-	<div id='wagers'>
-		{{#if topic.active}}
-			{{#unless topic.edit}}
-				<form action='/newWager/{{topic.id}}' method="POST">
-					<input type="text" id="datetimepicker1" name="wager" placeholder="____/__/__ __:__">
-					<input type="submit" value="make wager">
-				</form>
-			{{/unless}}
+<div id="topic-wrapper">
+	<div class='topic'>
+		<div class='meta'>
+			<img src="{{user.img_url}}" alt="user icon">
+			<a href="/user/{{user.id}}"><h3>{{user.username}}</h3></a>
+			<p>{{topic.creation_date}}</p>
+			<p>{{topic.city}} {{topic.region}} {{topic.country}}</p>
+		</div>
+		<h2>"{{topic.title}}"</h2>
+		{{{topic.description}}}
+		{{#if topic.edit}}
+		<a href='/topics/edit/{{topic.id}}' class="edit">edit</a>
 		{{/if}}
-
-		{{#each wagers}}
-			<div class='wager'>
-				<div class='meta'>
-					<img src="{{img_url}}" alt="user icon" height="75" width="75">
-					<a href="/users/{{user_id}}"><h3>{{username}}</a> predicts</h3> <p>{{wager}}</p>
-				</div>
-			</div>
-		{{/each}}
 	</div>
-</div>
 
-<div class='topic'>
-	<h3>Comments</h3>
-	<div id='comments'>
-		<a name="comment"></a>
-		<form action='/newComment/{{topic.id}}' method="POST">
-			{{!-- <input type="text" name="comment"> --}}
-			<textarea name='comment' rows='4' cols='50'></textarea>
-			<p>supports markdown</p>
-			<input type="submit" value="add comment">
-		</form>
+	<div class='topic'>
+		<a name="wager"></a>
+		<h3>Wagers</h3>
 
-		{{#each comments}}
-		<div class='comment'>
-			<div class='meta'>
-				<img src="{{img_url}}" alt="user icon" height="75" width="75">
-				<a href="/users/{{user_id}}"><h3>{{username}}</h3></a>
-				<p>{{creation_date}}</p>
-				<p>{{city}} {{region}} {{country}}</p>
-			</div>
-			{{{comment}}}
-			
-			{{#if edit}}
-			
-			<a class='edit' href="/comments/{{id}}">edit</a>
+		<div id='wagers'>
+			{{#if topic.active}}
+				{{#unless topic.edit}}
+					<form action='/newWager/{{topic.id}}' method="POST">
+						<input type="text" id="datetimepicker1" name="wager" placeholder="____/__/__ __:__">
+						<input  class="button" type="submit" value="make wager">
+					</form>
+				{{/unless}}
+
+				{{#if topic.edit}}
+					<div class='topic'>	
+						Set the completion date to end the wager.
+						<form action="/topics/complete/{{topic.id}}" method="POST">
+							<input type="hidden" name="_method" value="PUT">
+							<input type="text" id="datetimepicker1" name="complete_date" placeholder="____/__/__ __:__">
+							<input type="hidden" name="active" value="false">
+							<input class="button" type="submit" value="End">
+						</form>
+					</div>
+				{{/if}}
 			{{/if}}
 
+			{{#each wagers}}
+				<div class='wager'>
+					<div class='meta'>
+						<img src="{{img_url}}" alt="user icon" height="75" width="75">
+						<a href="/user/{{user_id}}"><h3>{{username}}</a> predicts</h3> <p>{{wager}}</p>
+					</div>
+				</div>
+			{{/each}}
 		</div>
-		{{/each}}
 	</div>
 
-</div>
+	<div class='topic'>
+		<h3>Comments</h3>
+		<div id='comments'>
+			<a name="comment"></a>
+			<form action='/newComment/{{topic.id}}' method="POST">
+				{{!-- <input type="text" name="comment"> --}}
+				<textarea name='comment' rows='4' cols='50'></textarea>
+				<p>supports markdown</p>
+				<input class="button" type="submit" value="comment">
+			</form>
 
+			{{#each comments}}
+			<div class='comment'>
+				<div class='meta'>
+					<img src="{{img_url}}" alt="user icon" height="75" width="75">
+					<a href="/user/{{user_id}}"><h3>{{username}}</h3></a>
+					<p>{{creation_date}}</p>
+					<p>{{city}} {{region}} {{country}}</p>
+				</div>
+				{{{comment}}}
+				
+				{{#if edit}}
+				
+				<a class='edit' href="/comments/{{id}}">edit</a>
+				{{/if}}
+
+			</div>
+			{{/each}}
+		</div>
+
+	</div>
+</div>
 

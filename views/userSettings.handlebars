@@ -1,36 +1,38 @@
-<div class="topic">
-	<h3>User Settings</h3>
+<div id='topic-wrapper'>
+	<div class="topic">
+		<h3>User Settings</h3>
 
-	<form action="/updateUser/{{id}}" method="POST">
-		<input type="hidden" name="_method" value="PUT">
-		first
-		<br><label for="first">
-			<input type="text" name="first" value='{{first}}'>
-		</label><br>
+		<form action="/updateUser/{{id}}" method="POST">
+			<input type="hidden" name="_method" value="PUT">
+			first
+			<br><label for="first">
+				<input type="text" name="first" value='{{first}}'>
+			</label><br>
 
-		last
-		<br><label for="last">
-			<input type="text" name="last" value='{{last}}'>
-		</label><br>
+			last
+			<br><label for="last">
+				<input type="text" name="last" value='{{last}}'>
+			</label><br>
 
-		image
-		<br><label for="img_url">
-			<input type="text" name="img_url" value='{{img_url}}'>
-		</label><br>
+			image
+			<br><label for="img_url">
+				<input type="text" name="img_url" value='{{img_url}}'>
+			</label><br>
 
-		<input type="submit" value="Update">
-	</form>
-</div>
+			<input class="button" type="submit" value="Update">
+		</form>
+	</div>
 
-<div class="topic">
-	<h3>Change Password</h3>
-	<form action="/changePassword/{{id}}" method="POST">
-		<input type="hidden" name="_method" value="PUT">
+	<div class="topic">
+		<h3>Change Password</h3>
+		<form action="/changePassword/{{id}}" method="POST">
+			<input type="hidden" name="_method" value="PUT">
 
-		password
-		<br><label for="password">
-			<input type="password" name="password">
-		</label><br>
-		<input type="submit" value="change password">
-	</form>
+			password
+			<br><label for="password">
+				<input type="password" name="password">
+			</label><br>
+			<input class="button" type="submit" value="Reset">
+		</form>
+	</div>
 </div>

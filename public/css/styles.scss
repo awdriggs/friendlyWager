@@ -23,6 +23,7 @@ $blue: #006992; //rgba(0, 105, 146, 100)
 $grey: #D6D6D6;
 $light-blue: #8fb3b7; //rgba(143, 179, 183, 100)
 $white: #EDEFEF;
+$black: #464954;
 
 html {
 	font-size: 62.5%; /* Sets up the Base 10 stuff */
@@ -30,15 +31,16 @@ html {
 
 body{
 	padding: 5px;
-	
-	a{
-		color: $blue;
-	}
+	color: $black;
 
 	h3{
 		margin: 0;
 	}
 
+	a {
+		text-decoration: none;
+		color: $blue;
+	}
 	
 }
 
@@ -50,8 +52,9 @@ body{
 	font-family: $body_font;
 }
 #logo {
-	width: 100%;
-	// background-color: $yellow;
+	display: block;
+	max-width: 426px;
+	height: 100px;
 	margin: 1rem 0;
 	h1 {
 		font-family: $title_font;
@@ -60,15 +63,20 @@ body{
 		margin: 0;
 	}
 
+	background-image: url('../img/logo.jpg');
+	 background-repeat: no-repeat;
+	 margin: 2rem auto;
+
 }
 
-nav{
+nav {
 	display: flex;
 	ul{
 		width: 100%;
 		margin: 0 auto;
 		padding: 0;
 	}
+	
 	li{
 		width: 30%;
 
@@ -98,24 +106,42 @@ nav{
 }
 
 #menu{
-	max-width: 400px;
+	
 	margin: 0 auto;
+
 
 	ul{
 		width: 100%;
 		margin: 0;
 		padding: 1px 0;
+
 	}
 
 	li{
 		text-align: center;
 		list-style-type: none;
-		@include font-size(2.5);
 		height: 3rem;
-		padding-top: 1.25rem;
-		background-color: $yellow;
-		margin: 3%;
+		width: 100%;
+		background-color: $grey;
+		color: $blue;
+		margin: 1rem auto;
+		height: 4rem;
+		
+		@include border($grey, 10);
+		
+		@include font-size(3);
+		
+		padding-top: 1.5rem;
+		
+
 	}
+
+	li:hover{
+		background-color: $green;
+		@include border($green, 10);
+		color: $white;
+	}
+
 }
 
 .topic{
@@ -124,7 +150,7 @@ nav{
 	padding: 2rem;
 	background-color: $white;
 	margin: 1rem auto;
-	
+	line-height: 3rem;
 
 	a, a:visited{
 		text-decoration: none;
@@ -150,6 +176,7 @@ nav{
 
 	h2{
 		text-align: center;
+		line-height: 4rem;
 	}
 
 	.meta{
@@ -193,13 +220,21 @@ nav{
 	
 	.topic_actions{
 		display: flex;
-		a{	background-color: $green;
+		a{	
+			@include border($grey, 10);
+			background-color: $grey;
 			width: 45%;
 			height: 4rem;
 			margin: 0 2.5%;
 			@include font-size(3);
 			padding-top:1.5rem;
 			text-align: center;
+		}
+
+		a:hover{
+			@include border($green, 10);
+			background-color: $green;
+			color: $white;
 		}
 	}
 
@@ -209,6 +244,160 @@ nav{
 	
 }
 
-.meta {
-	background-color: $yellow;
+.wager {
+	.meta {
+		background-color: $green;
+	}
+
 }
+
+.topic_actions a{
+	background-color: $grey;
+	
+}
+
+.center {
+	text-align: center;
+}
+
+input, textarea, .button{
+	width: 100%;
+	margin-bottom: 1rem;
+	line-height: 3rem;
+	font-size: 2rem;
+	height: 4rem;
+	font-family: $body_font, serif;
+	padding: 1rem;
+}
+
+textarea{
+	margin-top: 2rem;
+	height: 20rem;
+}
+
+input:focus, textarea:focus{
+	border: 2px solid $orange;
+	outline: 0;
+}
+#datetimepicker1 {
+	text-align: center;
+}
+
+.button {
+	display: block;
+	@include font-size(3);
+	@include border($grey, 10);
+	
+	width: 100%;
+	height: 6rem;
+
+	margin: 0 auto;
+	padding: 0;
+	padding-top: 1.25rem;
+	
+	font-family: $body_font;
+	text-align: center;
+
+	background-color: $grey;
+	color: $blue;	
+}
+
+.button:hover{
+	@include border($green, 10);
+	background-color: $green;
+	color: $white;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 600px) {
+	#menu {
+		li{
+			display: inline-block;
+			width: 45%;
+			margin: 1rem 0 1rem 3%;
+		}
+	}
+
+	.button{
+		width: 230px;
+	}
+
+	.topic {
+		max-width: 600px;
+	}
+
+}
+
+@media only screen and (min-width: 930px) {
+	#wrapper {
+		width: 930px;
+	}
+
+	#topic-wrapper { 
+		width: 600px;
+		float: left;
+		display: block;
+	}	
+
+	#menu {
+		margin-left: 1rem;
+		width: 230px;
+		float: left;
+		li{	
+			margin-left: 0;
+			display: block;
+			width: 230px;
+			
+		}
+	}
+
+	nav {
+
+		float: right;
+
+		margin-right: 9rem;
+
+		li{	
+			margin-top: 1rem;
+			display: block;
+			width: 230px;
+
+		}
+	}
+
+
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  text-align: center;
+  
+
+
+  tbody{
+  	  border-top: 1px solid #ddd;
+  	  border-left: 1px solid #dddddd;
+  	border-right: 1px solid #dddddd;
+  	border-bottom: 1px solid #dddddd;
+
+  }
+
+
+	
+	tr:nth-child(even) {
+	  background-color: $grey;
+	}
+
+	tr:nth-child(2){
+	  background-color: $green;
+	}
+
+
+	th, td {
+	    padding: 15px;
+	}
+}
+

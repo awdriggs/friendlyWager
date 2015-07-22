@@ -1,15 +1,17 @@
-<div class='topic'>
-<form action="/topics" method="POST" id="edit">
-	
-	Title<br>
-	<label for="title">
-		<input type="text" name="title">
-	</label><br>
-	Description
-	<br><label for="description">
-		<textarea name="description" form="edit" rows="4" cols="50"></textarea>
-		<p>supports markdown</p>
-	</label><br>
-	<input type="submit" value="Submit">
-</form>
+<div id="topic-wrapper">
+	<div class='topic'>
+	<form action="/topics" method="POST" id="edit">
+		
+		Title<br>
+		<label for="title">
+			<input type="text" name="title">
+		</label><br>
+		Description
+		<br><label for="description">
+			<textarea name="description" form="edit" rows="4" cols="50"></textarea>
+			<p>supports markdown</p>
+		</label><br>
+		<input class="button" type="submit" value="Submit">
+	</form>
+	</div>
 </div>

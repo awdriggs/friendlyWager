@@ -1,21 +1,25 @@
+<div id="topic-wrapper">
 {{#each topics}}
-<div class='topic'>
-	<div class='meta'>
-		<img src="{{img_url}}" alt="user icon" height="75" width="75">
-		<a href="/user/{{owner_id}}"><h3>{{owner_username}}</h3></a>
-		<p>{{creation_date}}</p>
-		<p>{{city}} {{region}} {{country}}</p>
-		</div>
-	<a href="topics/{{id}}"><h2>{{title}}</h2></a>
-	<div class='stats'>
-		<p>12 comments</p>
-		<p>5 wagers</p>
-	</div>
-	<div class='topic_actions'>
-		<a href="topics/{{id}}#comment">comment</a>
-		<a href="topics/{{id}}#wager">wager</a>
-	</div>
-</div>
-{{/each}}
 
+
+	<div class='topic'>
+		<div class='meta'>
+			<img src="{{img_url}}" alt="user icon" height="75" width="75">
+			<a href="/user/{{owner_id}}"><h3>{{owner_username}}</h3></a>
+			<p>{{creation_date}}</p>
+			<p>{{city}} {{region}} {{country}}</p>
+		</div>
+		<a href="topics/{{id}}"><h2>{{title}}</h2></a>
+		<div class='stats'>
+			<p>12 comments</p>
+			<p>5 wagers</p>
+		</div>
+		<div class='topic_actions'>
+			<a href="topics/{{id}}#comment">comment</a>
+			<a href="topics/{{id}}#wager">wager</a>
+		</div>
+	</div>
+
+{{/each}}
+</div>
 	

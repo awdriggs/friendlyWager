@@ -1,26 +1,31 @@
+<div id="topic-wrapper">
 
-<img src="{{user.img_url}}" alt="user icon" height="75" width="75">
-<h3>{{user.username}} {{points}}</h3>
+	<div class='topic center'>
+		<h3>{{user.username}} {{user.points}}</h3>
+		<img src="{{user.img_url}}" alt="user icon">
+		
+	</div>
 
-<div class="topic">
-	<h2>Topics Created</h2>
-	{{#each topics}}
-		<a href="/topics/{{id}}">{{title}}</a><br>
-	{{/each}}
-</div>
+	<div class="topic">
+		<h2>Topics Created</h2>
+		{{#each topics}}
+			<a href="/topics/{{id}}">{{title}}</a><br>
+		{{/each}}
+	</div>
 
-<div class="topic">
-	<h2>Wagers Made</h2>
-	{{#each wagers}}
-		<a href="/topics/{{id}}">{{title}}</a><br> 
-		{{wager}}<br>
-	{{/each}}
-</div>
+	<div class="topic">
+		<h2>Wagers Made</h2>
+		{{#each wagers}}
+			<a href="/topics/{{id}}">{{title}}</a><br> 
+			{{wager}}<br>
+		{{/each}}
+	</div>
 
-<div class="topic">
-	<h2>Comments made</h2>
-	{{#each comments}}
-		<a href="/topics/{{id}}">{{title}}</a><br>
-		{{{comment}}}<br>
-	{{/each}}
+	<div class="topic">
+		<h2>Comments made</h2>
+		{{#each comments}}
+			<a href="/topics/{{id}}">{{title}}</a><br>
+			{{{comment}}}<br>
+		{{/each}}
+	</div>
 </div>

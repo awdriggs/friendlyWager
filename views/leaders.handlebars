@@ -1,3 +1,11 @@
-{{#each users}}
-{{@key}} <a href="/user/{{id}}">{{username}}</a> {{points}}</br>
-{{/each}}
+<div id='topic-wrapper'>
+	<div class='topic'>
+		<ol>leaders
+			{{#each users}}
+				<li> <a href="/user/{{id}}">{{username}}</a> {{points}}
+				</li>
+		{{/each}}
+	</div>
+
+</div>
+

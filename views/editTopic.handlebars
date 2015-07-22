@@ -1,35 +1,29 @@
-<div class='topic'>
-	
-	<form action="/topics/{{topic.id}}" method="POST" id="edit">
-		<input type="hidden" name="_method" value="PUT">
+<div id="topic-wrapper">	
+	<div class='topic'>
+		
+		<form action="/topics/{{topic.id}}" method="POST" id="edit">
+			<input type="hidden" name="_method" value="PUT">
 
-		Title<br>
-		<label for="title">
-			<input type="text" name="title" value="{{topic.title}}">
-		</label><br>
+			Title<br>
+			<label for="title">
+				<input type="text" name="title" value="{{topic.title}}">
+			</label><br>
 
-		Description
-		<br><label for="description">
-			<textarea name="description" form="edit" rows="4" cols="50">{{{topic.description}}}</textarea>
-			<p>supports markdown</p>
-		</label><br>
-		<input type="submit" value="Submit">
-	</form>
-</div>
-	
-<div class='topic'>	
-	Set the completion date to end the wager.
-	<form action="/topics/complete/{{topic.id}}" method="POST">
-		<input type="hidden" name="_method" value="PUT">
-		<input type="text" id="datetimepicker1" name="complete_date" value='{{topic.complete_date}}'>
-		<input type="hidden" name="active" value="false">
-		<input type="submit" value="End">
-	</form>
-</div>
+			Description
+			<br><label for="description">
+				<textarea name="description" form="edit" rows="4" cols="50">{{{topic.description}}}</textarea>
+				<p>supports markdown</p>
+			</label><br>
+			<input class="button" type="submit" value="Submit">
+		</form>
+	</div>
+		
 
-<div class='topic'>
-	<form action="/topics/{{topic.id}}" method="POST">
-		<input type="hidden" name="_method" value="DELETE">
-		<input type="submit" value="delete">
-	</form>
+	<div class='topic'>
+		<h3>Delete the topic</h3>
+		<form action="/topics/{{topic.id}}" method="POST">
+			<input type="hidden" name="_method" value="DELETE">
+			<input class="button" type="submit" value="Delete">
+		</form>
+	</div>
 </div>
