@@ -30,21 +30,24 @@ var sam = {
 	img_url: photos[2]
 };
 
-db.create('users', adam, function(user){
-	console.log(user.first + " created");
-});
+console.log('')
+"INSERT INTO users(username, first, last, password, img_url) VALUES ('awdriggs', 'adam', 'driggers', 'a', 'http://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/nh-charon.jpg?itok=46XaGzbi') RETURNING id AS id";
+
+// db.create('users', adam, function(user){
+// 	console.log(user.first + " created");
+// });
 
 
-db.create('users', sam, function(user){
-	console.log(user.first + " created");
-});
+// db.create('users', sam, function(user){
+// 	console.log(user.first + " created");
+// });
 
 
-db.create('users', joe, function(user){
-	console.log(user.first + " created");
-});
+// db.create('users', joe, function(user){
+// 	console.log(user.first + " created");
+// });
 
-// var topics = ['When will Joe grow a beard?'];
+// var topics = ['When will Greece?'];
 // var descriptions = ['Given history, its not very likely that joe will be able to grow a beard'];
 // var owners = ['2'];
 // var geos = ['40.6100,-73.9108'];

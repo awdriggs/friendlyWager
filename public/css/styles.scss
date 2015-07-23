@@ -166,6 +166,10 @@ nav {
 		margin: 1rem 0;
 		font-size: 1.5rem;
 		line-height: 2rem;
+
+		img{
+			max-width: 100%;
+		}
 	}
 
 	.edit{
@@ -179,6 +183,8 @@ nav {
 		text-align: center;
 		line-height: 4rem;
 	}
+	
+	
 
 	.meta{
 		border-bottom-left-radius: 39px;
@@ -197,8 +203,11 @@ nav {
 		p{
 			
 			margin: 0;
+
 			
-		}
+	}
+			
+		
 
 		img{
 			float: left;

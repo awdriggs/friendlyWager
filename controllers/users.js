@@ -32,7 +32,7 @@ module.exports.controller = function(app) {
     app.post('/newUser', function(req, res) {
 
         Users.create('users', req.body, function(data) {
-            res.redirect('/users');
+            res.redirect('/');
         })
 
     });

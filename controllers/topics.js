@@ -30,7 +30,7 @@ module.exports.controller = function(app) {
         });
     });
 
-    //route one topic, MOST PROUD SO FAR!
+    //route one topic, MOST PROUD
     app.get('/topics/:id', function(req, res) {
         Topics.find(req.params.id, function(data) {
             canEdit(req, data);
