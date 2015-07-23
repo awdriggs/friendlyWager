@@ -1,6 +1,6 @@
 var db = require('../db.js');
 
-module.exports.User = {
+module.exports.user = {
     //this is only used for testing, maybe remove before release
     all: function(table, callback) {
         db.all(table, function(users) {

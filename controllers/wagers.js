@@ -1,4 +1,4 @@
-var Wagers = require('../models/wager.js').Wager;
+var Wagers = require('../models/wager.js').wager;
 var IpInfo = require("ipinfo");
 
 module.exports.controller = function(app){

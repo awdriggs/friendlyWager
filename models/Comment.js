@@ -1,6 +1,6 @@
 var db = require('../db.js');
 
-module.exports.Comment = {
+module.exports.comment = {
     create: function(data, callback) {
         db.create('comments', data, function(comments) {
             callback();

@@ -1,6 +1,6 @@
 var db = require('../db.js');
 
-module.exports.Topic = {
+module.exports.topic = {
     all: function(tableArray, keysArray, compareArray, callback) {
 
         db.join(tableArray, keysArray, compareArray, function(topics) {

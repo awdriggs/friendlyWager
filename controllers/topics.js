@@ -1,4 +1,4 @@
-var Topics = require('../models/topic.js').Topic;
+var Topics = require('../models/topic.js').topic;
 var IpInfo = require("ipinfo");
 var marked = require('marked');
 var authenticate = require('../helpers.js').authenticate;

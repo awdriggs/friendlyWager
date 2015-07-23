@@ -1,4 +1,4 @@
-var Comments = require('../models/comment.js').Comment;
+var comments = require('../models/comment.js').comment;
 var IpInfo = require("ipinfo");
 var marked = require('marked');
 
@@ -16,14 +16,14 @@ module.exports.controller = function(app) {
                 comment: marked(req.body.comment)
             }
 
-            Comments.create(data, function(){
+            comments.create(data, function(){
             	res.redirect('/topics/'+req.params.id)
             });
         });
     });
 
     app.get('/comments/:id', function(req, res) {
-        Comments.find(req.params.id, function(comment){
+        comments.find(req.params.id, function(comment){
             //res.send(comment)
             res.render('editComment', comment[0])
         });
@@ -44,7 +44,7 @@ module.exports.controller = function(app) {
                 topic_id: req.body.topic_id
             }
 
-            Comments.update(data, req.params.id, function(){
+            comments.update(data, req.params.id, function(){
                 //res.send(req.body)
                 res.redirect('/topics/'+data.topic_id);
             });
@@ -52,7 +52,7 @@ module.exports.controller = function(app) {
     });
 
     app.delete('/comments/:id', function(req, res) {
-        Comments.delete(req.params.id, function(){
+        comments.delete(req.params.id, function(){
             res.redirect('/topics/'+req.body.topic_id);
         })
     })

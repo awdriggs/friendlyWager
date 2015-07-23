@@ -1,4 +1,4 @@
-var Users = require('../models/User.js').User;
+var Users = require('../models/User.js').user;
 
 module.exports.controller = function(app) {
 
