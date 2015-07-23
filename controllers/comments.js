@@ -1,4 +1,4 @@
-var comments = require('../models/comment.js').comment;
+var comments = require('../models/Comment.js').comment;
 var IpInfo = require("ipinfo");
 var marked = require('marked');
 
