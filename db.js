@@ -1,7 +1,7 @@
 //orm
 var pg = require('pg');
-var dbUrl = "pg://localhost/friendly_wager_db";
-//var dbUrl = process.env.DATABASE_URL //for heroku
+//var dbUrl = "pg://localhost/friendly_wager_db";
+var dbUrl = process.env.DATABASE_URL //for heroku
 
 //making this avaible to other js files
 module.exports = {
